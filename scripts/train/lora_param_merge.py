@@ -23,7 +23,7 @@ router1_txt = os.path.join(router_path, args.task1 + "_router_index.txt")
 router2_txt = os.path.join(router_path, args.task2 + "_router_index.txt")
 
 # ---------- Hyperparameters ----------
-EXPERT_TOTAL = 16
+EXPERT_TOTAL = 12
 PRIVATE_NUM  = 8
 shared_idxs  = list(range(PRIVATE_NUM, EXPERT_TOTAL))   # 8,9,10,11
 
@@ -66,7 +66,6 @@ for name in theta_old:
         else:
             a1, a2 = 0.5, 0.5  # both in / neither in
         merged[name] = a1 * theta_old[name] + a2 * theta_new[name]
-        print(f"[Merged] {name}  layer={layer_id}  expert={expert_id + PRIVATE_NUM}  alpha=({a1},{a2})")
 
 # ---------- 4. Save ----------
 dst_dir = os.path.join(base_path, args.task2)
